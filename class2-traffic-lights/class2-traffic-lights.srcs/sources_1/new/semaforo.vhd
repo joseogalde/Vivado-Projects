@@ -56,7 +56,6 @@ end semaforo;
 architecture Behavioral of semaforo is
 type state is (S1, S2, S3, S4);  		-- enumeracion de los posibles estados
 -- señales que seran parte de nuestro diseño
-signal previousState		: state:= S1;	
 signal currentState		: state:= S1;	
 signal nextState		: state:= S1;
 signal luces			: std_logic_vector(5 downto 0):=(others=>'0');
@@ -89,16 +88,13 @@ TIME_EVENT_1S :  process (clk)
 	
 SYNC_PROC: process (clk, time_pulse, currentState, nextState, stateTransition)
 	begin
-	   if rising_edge(clk) then
-	   		previousState <= currentState;
-	   	end if;
-	   if rising_edge(time_pulse) and stateTransition = '1' then
+	   if rising_edge(clk) and stateTransition = '1' then
 	       currentState <= nextState;
 	   end if;
 	end process;
 
 
-NEXT_STATE_DECODE : process (clk, time_pulse, u, p, currentState, nextState, previousState, stateTransition)
+NEXT_STATE_DECODE : process (clk, time_pulse, u, p, currentState, nextState,  stateTransition)
 	variable timer : integer:=0;
 	begin
 	    if rising_edge(clk) then
@@ -111,54 +107,55 @@ NEXT_STATE_DECODE : process (clk, time_pulse, u, p, currentState, nextState, pre
                 end if;
             end if;
     	    
-    	    stateTransition <= '0';
-            case currentState is 
-                when S1      =>
-                    if u = '1' then
-                        nextState <= S3;
-                        stateTransition <= '1';
-                    else
-                        if timer < T1 then
+    	    if stateTransition = '0' then
+                case currentState is 
+                    when S1      =>
+                        if u = '1' then
+                            nextState <= S3;
+                            stateTransition <= '1';
+                        else
+                            if timer < T1 then
+                                nextState <= currentState;
+                                stateTransition <= '0';
+                            else
+                                nextState <= S2;
+                                stateTransition <= '1';
+                            end if;
+                        end if; 
+                    when S2      =>  
+                        if timer < T2 then
                             nextState <= currentState;
                             stateTransition <= '0';
                         else
-                            nextState <= S2;
+                            nextState <= S3;
                             stateTransition <= '1';
                         end if;
-                    end if; 
-                when S2      =>  
-                    if timer < T2 then
-                        nextState <= currentState;
-                        stateTransition <= '0';
-                    else
-                        nextState <= S3;
-                        stateTransition <= '1';
-                    end if;
-                when S3      => 
-                    if p = '1' then
-                        nextState <= S1;
-                        stateTransition <= '1';
-                    else
-                        if timer < T3 then
+                    when S3      => 
+                        if p = '1' then
+                            nextState <= S1;
+                            stateTransition <= '1';
+                        else
+                            if timer < T3 then
+                                nextState <= currentState;
+                                stateTransition <= '0';
+                            else
+                                nextState <= S4;
+                                stateTransition <= '1';
+                            end if;
+                        end if;
+                    when S4      =>  
+                        if timer < T4 then
                             nextState <= currentState;
                             stateTransition <= '0';
                         else
-                            nextState <= S4;
+                            nextState <= S1;
                             stateTransition <= '1';
                         end if;
-                    end if;
-                when S4      =>  
-                    if timer < T4 then
-                        nextState <= currentState;
-                        stateTransition <= '0';
-                    else
+                    when others  => 
                         nextState <= S1;
                         stateTransition <= '1';
-                    end if;
-                when others  => 
-                    nextState <= S1;
-                    stateTransition <= '1';
-            end case;
+                end case;
+            end if;
 		end if;
 	end process;
 

@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Mon Jan 11 17:28:02 2021
+| Date         : Mon Jan 11 17:47:29 2021
 | Host         : yurigagarin running 64-bit Ubuntu 18.04.5 LTS
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     7 |
-|    Minimum number of control sets                        |     7 |
+| Total control sets                                       |     4 |
+|    Minimum number of control sets                        |     4 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    25 |
+| Unused register locations in slices containing registers |     9 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,9 +39,9 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     7 |
-| >= 0 to < 4        |     3 |
-| >= 4 to < 6        |     1 |
+| Total control sets |     4 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
@@ -58,28 +58,25 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               9 |            5 |
+| No           | No                    | No                     |              41 |           15 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              62 |           16 |
-| Yes          | No                    | No                     |               1 |            1 |
+| Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |              31 |            8 |
+| Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+
-|                 Clock Signal                |                Enable Signal               |        Set/Reset Signal       | Slice Load Count | Bel Load Count |
-+---------------------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+
-|  Clock_BUFG                                 | FSM_sequential_currentState_reg[1]_i_2_n_0 |                               |                1 |              1 |
-|  FSM_sequential_currentState_reg[1]_i_2_n_0 |                                            |                               |                1 |              2 |
-|  myclk_IBUF_BUFG                            |                                            |                               |                1 |              2 |
-|  Clock_BUFG                                 |                                            |                               |                3 |              5 |
-|  Clock_BUFG                                 |                                            | semaforoA/counter[31]_i_1_n_0 |                8 |             31 |
-|  Clock_BUFG                                 | FSM_sequential_currentState_reg[1]_i_2_n_0 | semaforoA/timer[31]_i_1_n_0   |                8 |             31 |
-|  myclk_IBUF_BUFG                            |                                            | clock_divider1/divided_clk    |                8 |             31 |
-+---------------------------------------------+--------------------------------------------+-------------------------------+------------------+----------------+
++------------------+---------------+-------------------------------+------------------+----------------+
+|   Clock Signal   | Enable Signal |        Set/Reset Signal       | Slice Load Count | Bel Load Count |
++------------------+---------------+-------------------------------+------------------+----------------+
+|  myclk_IBUF_BUFG |               |                               |                1 |              2 |
+|  Clock_BUFG      |               | semaforoA/counter[31]_i_1_n_0 |                8 |             31 |
+|  myclk_IBUF_BUFG |               | clock_divider1/divided_clk    |                8 |             31 |
+|  Clock_BUFG      |               |                               |               14 |             39 |
++------------------+---------------+-------------------------------+------------------+----------------+
 
 

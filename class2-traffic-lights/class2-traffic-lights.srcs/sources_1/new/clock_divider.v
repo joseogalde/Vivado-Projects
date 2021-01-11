@@ -26,7 +26,7 @@ module clock_divider(
     );
     
 
-localparam div_value = 1000000; //100MHZ equals to 10ns => multiply period by 10^8 to get one second 
+localparam div_value = 10000; //100MHZ equals to 10ns => multiply period by 10^8 to get one second 
 integer counter_value = 0;
 
 always@ (posedge clk)
