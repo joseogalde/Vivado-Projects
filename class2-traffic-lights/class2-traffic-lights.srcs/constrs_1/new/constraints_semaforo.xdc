@@ -19,6 +19,10 @@ set_property -dict { PACKAGE_PIN M2 IOSTANDARD LVCMOS33 } [get_ports {tr_p}]; #u
 #set_property -dict { PACKAGE_PIN M1 IOSTANDARD LVCMOS33 } [get_ports {user_led5}]; #user_led5
 #set_property -dict { PACKAGE_PIN N1 IOSTANDARD LVCMOS33 } [get_ports {user_led8}]; #user_led8
 
+# SW1 - PB1 - N4 
+# SW2 - PB2 - R2
+# SW3 - PB3 - R1 
+# SW4 - PB4 - R3
 set_property -dict { PACKAGE_PIN N4 IOSTANDARD LVCMOS33 } [get_ports {tu}]; #SW1
 set_property -dict { PACKAGE_PIN R2 IOSTANDARD LVCMOS33 } [get_ports {tp}]; #SW2
 #set_property -dict { PACKAGE_PIN R1 IOSTANDARD LVCMOS33 } [get_ports {PB3}]; #SW3
@@ -26,4 +30,4 @@ set_property -dict { PACKAGE_PIN R2 IOSTANDARD LVCMOS33 } [get_ports {tp}]; #SW2
 
 
 set_property -dict { PACKAGE_PIN N11 IOSTANDARD LVCMOS33 } [get_ports {myclk}];
-create_clock -add -name sys_clk_pin -period 10.00 [get_ports {myclk}];
+create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports {myclk}]; # 100MHz clock

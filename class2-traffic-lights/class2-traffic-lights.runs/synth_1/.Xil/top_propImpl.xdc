@@ -11,9 +11,9 @@ set_property src_info {type:XDC file:1 line:17 export:INPUT save:INPUT read:READ
 set_property -dict { PACKAGE_PIN N2 IOSTANDARD LVCMOS33 } [get_ports {ta_p}]; #user_led7
 set_property src_info {type:XDC file:1 line:18 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN M2 IOSTANDARD LVCMOS33 } [get_ports {tr_p}]; #user_led4
-set_property src_info {type:XDC file:1 line:22 export:INPUT save:INPUT read:READ} [current_design]
+set_property src_info {type:XDC file:1 line:26 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN N4 IOSTANDARD LVCMOS33 } [get_ports {tu}]; #SW1
-set_property src_info {type:XDC file:1 line:23 export:INPUT save:INPUT read:READ} [current_design]
+set_property src_info {type:XDC file:1 line:27 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN R2 IOSTANDARD LVCMOS33 } [get_ports {tp}]; #SW2
-set_property src_info {type:XDC file:1 line:28 export:INPUT save:INPUT read:READ} [current_design]
+set_property src_info {type:XDC file:1 line:32 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN N11 IOSTANDARD LVCMOS33 } [get_ports {myclk}];

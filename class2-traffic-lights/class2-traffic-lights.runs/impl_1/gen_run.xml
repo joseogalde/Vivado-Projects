@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a50tftg256-1" LaunchTime="1610344558">
+<GenRun Id="impl_1" LaunchPart="xc7a50tftg256-1" LaunchTime="1610396842">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="top.drc"/>
   <File Type="BG-BGN" Name="top.bgn"/>
@@ -9,6 +9,7 @@
   <File Type="RBD_FILE" Name="top.rbd"/>
   <File Type="NPI_FILE" Name="top.npi"/>
   <File Type="RNPI_FILE" Name="top.rnpi"/>
+  <File Type="CFI_FILE" Name="top.cfi"/>
   <File Type="RDI-RDI" Name="top.vdi"/>
   <File Type="RCFI_FILE" Name="top.rcfi"/>
   <File Type="PDI-FILE" Name="top.pdi"/>
@@ -74,8 +75,6 @@
   <File Type="REPORTS-TCL" Name="top_reports.tcl"/>
   <File Type="OPT-TIMING" Name="top_timing_summary_opted.rpt"/>
   <File Type="PA-TCL" Name="top.tcl"/>
-  <File Type="CFI_FILE" Name="top.cfi"/>
-  <File Type="PA-DCP" Name="top.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/clock_divider.v">
@@ -123,7 +122,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
+      <Desc>Default settings for Implementation.</Desc>
+    </StratHandle>
     <Step Id="init_design"/>
     <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>

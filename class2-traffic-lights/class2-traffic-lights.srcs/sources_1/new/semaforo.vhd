@@ -33,7 +33,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity semaforo is
   generic (
-  	T1 		: integer;		-- numero de pulsos asociados al estado 1
+    T1 		: integer;		-- numero de pulsos asociados al estado 1
     T2 		: integer;		-- numero de pulsos asociados al estado 2
     T3 		: integer;		-- numero de pulsos asociados al estado 3
     T4 		: integer;		-- numero de pulsos asociados al estado 4
@@ -56,10 +56,12 @@ end semaforo;
 architecture Behavioral of semaforo is
 type state is (S1, S2, S3, S4);  		-- enumeracion de los posibles estados
 -- señales que seran parte de nuestro diseño
-signal currentState 	: state:=S1;	
-signal previousState 	: state:=S1;
+signal previousState		: state:= S1;	
+signal currentState		: state:= S1;	
+signal nextState		: state:= S1;
 signal luces			: std_logic_vector(5 downto 0):=(others=>'0');
 signal time_pulse		: std_logic:='0';
+signal stateTransition : std_logic :='0';
 
 begin
 
@@ -69,76 +71,110 @@ begin
   v_p 		<=luces(3);
   a_p 		<=luces(4);
   r_p 		<=luces(5);
-  
-  process (clk)
-  variable counter	: integer:=0;
-  begin
-  	if rising_edge(clk) then
-    	if counter=divisor then
-        	counter		:=0;
-            time_pulse	<= '1';
-        else
-        	counter:=counter+1;
-            time_pulse	<= '0';
-        end if;
-    end if;
-  end process;
-  
-   
-  process (clk, u, p, time_pulse,currentState,previousState)
-  	variable timer : integer:=0;
-  	begin
-    	if rising_edge(clk) then
-            
+
+TIME_EVENT_1S :  process (clk) 
+	variable counter	: integer:=0; 
+	begin 
+		if rising_edge(clk) then 
+		    	if counter=divisor then 
+		       		counter		:=0; 
+		        	time_pulse	<= '1'; 
+		        else 
+		        	counter:=counter+1; 
+		        	time_pulse	<= '0'; 
+		        end if;
+		end if;
+	end process;
+
+	
+SYNC_PROC: process (clk, time_pulse, currentState, nextState, stateTransition)
+	begin
+	   if rising_edge(clk) then
+	   		previousState <= currentState;
+	   	end if;
+	   if rising_edge(time_pulse) and stateTransition = '1' then
+	       currentState <= nextState;
+	   end if;
+	end process;
+
+
+NEXT_STATE_DECODE : process (clk, time_pulse, u, p, currentState, nextState, previousState, stateTransition)
+	variable timer : integer:=0;
+	begin
+	    if rising_edge(clk) then
             if time_pulse = '1' then
-                previousState <= currentState;
-                if previousState = currentState then
+                if stateTransition = '0' then
                     timer := timer + 1;
                 else
-                    timer := 0 ;
+                    timer := 0;
+                    stateTransition <= '0';
                 end if;
             end if;
-            
-        	case currentState is
-            	when S1      =>
-                	if u = '1' then
-                	   currentState <= S3;
-                	else
-                	   if timer < T1 then
-                	       currentState <= S1;
+    	    
+    	    stateTransition <= '0';
+            case currentState is 
+                when S1      =>
+                    if u = '1' then
+                        nextState <= S3;
+                        stateTransition <= '1';
+                    else
+                        if timer < T1 then
+                            nextState <= currentState;
+                            stateTransition <= '0';
                         else
-                            currentState <= S2;
+                            nextState <= S2;
+                            stateTransition <= '1';
                         end if;
                     end if; 
-                    luces <= "001100";
                 when S2      =>  
-                	if timer < T2 then
-                    	currentState <= S2;
+                    if timer < T2 then
+                        nextState <= currentState;
+                        stateTransition <= '0';
                     else
-                    	currentState <= S3;
+                        nextState <= S3;
+                        stateTransition <= '1';
                     end if;
-                    luces <= "010100";
                 when S3      => 
                     if p = '1' then
-                           currentState <= S1;
+                        nextState <= S1;
+                        stateTransition <= '1';
                     else
                         if timer < T3 then
-                            currentState <= S3;
+                            nextState <= currentState;
+                            stateTransition <= '0';
                         else
-                            currentState <= S4;
+                            nextState <= S4;
+                            stateTransition <= '1';
                         end if;
                     end if;
-                    luces <= "100001";
                 when S4      =>  
-                	if timer < T4 then
-                    	currentState <= S4;
+                    if timer < T4 then
+                        nextState <= currentState;
+                        stateTransition <= '0';
                     else
-                    	currentState <= S1;
+                        nextState <= S1;
+                        stateTransition <= '1';
                     end if;
-                    luces <= "100010";
                 when others  => 
-                	currentState <= S1;
+                    nextState <= S1;
+                    stateTransition <= '1';
             end case;
-        end if;
-  end process;
+		end if;
+	end process;
+
+OUTPUT_DECODE : process (currentState)
+    begin
+        case currentState is 
+            when S1      =>
+                luces <= "001100";
+            when S2      =>  
+                luces <= "010100";
+            when S3      => 
+                luces <= "100001";
+            when S4      =>  
+                luces <= "100010";
+            when others  =>
+                luces <= "111111"; 
+        end case;
+    end process;
 end Behavioral;

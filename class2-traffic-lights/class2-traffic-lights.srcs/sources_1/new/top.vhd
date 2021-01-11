@@ -71,11 +71,18 @@ clock_divider1: clock_divider
   );
 
 semaforoA: semaforo
-  generic map (
-  	T1   	=> 8,
-  	T2   	=> 2,
-    T3   	=> 6,
-    T4   	=> 2,
+--  generic map (
+--  	T1   	=> 8,
+--  	T2   	=> 2,
+--    T3   	=> 6,
+--    T4   	=> 2,
+--    divisor	=> 100
+--    )
+      generic map (
+  	T1   	=> 5,
+  	T2   	=> 5,
+    T3   	=> 5,
+    T4   	=> 5,
     divisor	=> 100
     )
   port map    (
