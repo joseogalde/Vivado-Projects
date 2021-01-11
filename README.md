@@ -1,2 +1,2 @@
 # Vivado-Projects
-Personal repository of Xilinx Vivado Projects 
+Personal repository for Xilinx Vivado Projects 
