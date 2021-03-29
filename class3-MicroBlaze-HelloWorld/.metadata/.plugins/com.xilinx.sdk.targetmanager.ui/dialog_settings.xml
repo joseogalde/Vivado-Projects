@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="Local" key="microblaze_uart_timer_hw_platform_0-target"/>
+	<item value="Auto Detect" key="microblaze_uart_bsp-device"/>
+	<item value="bootloop" key="microblaze_uart_timer_hw_platform_0-microblaze_0-initElf"/>
+	<item value="false" key="microblaze_uart_bsp-partial_bit"/>
+	<item value="/home/jose/Xilinx/Vivado-Projects/class3-MicroBlaze-HelloWorld/class3-MicroBlaze-HelloWorld.runs/impl_1/design_1_wrapper.mmi" key="microblaze_uart_bsp-bmmFile"/>
+	<item value="bootloop" key="microblaze_uart_bsp-microblaze_0-initElf"/>
+	<item value="false" key="microblaze_uart_timer_hw_platform_0-partial_bit"/>
+	<item value="/home/jose/Xilinx/Vivado-Projects/class3-MicroBlaze-HelloWorld/class3-MicroBlaze-HelloWorld.runs/impl_1/design_1_wrapper.bit" key="microblaze_uart_bsp-bitFile"/>
+	<item value="microblaze_uart_timer_hw_platform_0" key="programfpga.hwplatform"/>
+	<item value="/home/jose/Xilinx/Vivado-Projects/project_kk/project_kk.runs/impl_1/design_1_wrapper.bit" key="microblaze_uart_timer_hw_platform_0-bitFile"/>
+	<item value="/home/jose/Xilinx/Vivado-Projects/project_kk/project_kk.runs/impl_1/design_1_wrapper.mmi" key="microblaze_uart_timer_hw_platform_0-bmmFile"/>
+	<item value="Auto Detect" key="microblaze_uart_timer_hw_platform_0-device"/>
+	<item value="Local" key="microblaze_uart_bsp-target"/>
+</section>
