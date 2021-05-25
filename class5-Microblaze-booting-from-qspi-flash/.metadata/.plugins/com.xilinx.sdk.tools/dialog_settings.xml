@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/home/jose/Xilinx/Vivado-Projects/class5-Microblaze-booting-from-qspi-flash/helloworld_bootable_standalone/Debug/helloworld_bootable_standalone.elf" key="microblaze_hw_vivado_project-imgFile"/>
+	<item value="microblaze_hw_vivado_project" key="programflash.hwplatform"/>
+	<item value="" key="microblaze_hw_vivado_project-fsblFile"/>
+	<item value="true" key="microblaze_hw_vivado_project-verifyFlash"/>
+	<item value="Auto Detect" key="microblaze_hw_vivado_project-device"/>
+	<item value="Local" key="microblaze_hw_vivado_project-target"/>
+	<item value="mt25ql256-spi-x1_x2_x4" key="microblaze_hw_vivado_project-flashType"/>
+	<item value="true" key="microblaze_hw_vivado_project-blankCheck"/>
+	<item value="0x01000000" key="microblaze_hw_vivado_project-offSet"/>
+</section>
