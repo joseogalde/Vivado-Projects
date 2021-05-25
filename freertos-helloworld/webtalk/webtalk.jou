@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:47:09 MDT 2019
+# 
+# Start of session at: Fri Apr  2 23:33:09 2021
+# Process ID: 18228
+# Current directory: /home/jose/Xilinx/Vivado-Projects/freertos-helloworld/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /home/jose/Xilinx/Vivado-Projects/freertos-helloworld/webtalk/webtalk.log
+# Journal file: /home/jose/Xilinx/Vivado-Projects/freertos-helloworld/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

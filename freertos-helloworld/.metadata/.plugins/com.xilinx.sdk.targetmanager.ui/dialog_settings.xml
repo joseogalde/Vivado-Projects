@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/home/jose/Xilinx/Vivado-Projects/freertos-helloworld/freertos-helloworld.runs/impl_1/design_microblaze_wrapper.bit" key="microblaze_hw_project-bitFile"/>
+	<item value="false" key="microblaze_hw_project-partial_bit"/>
+	<item value="bootloop" key="microblaze_hw_project-microblaze_0-initElf"/>
+	<item value="microblaze_hw_project" key="programfpga.hwplatform"/>
+	<item value="Local" key="microblaze_hw_project-target"/>
+	<item value="Auto Detect" key="microblaze_hw_project-device"/>
+	<item value="/home/jose/Xilinx/Vivado-Projects/freertos-helloworld/freertos-helloworld.runs/impl_1/design_microblaze_wrapper.mmi" key="microblaze_hw_project-bmmFile"/>
+</section>
